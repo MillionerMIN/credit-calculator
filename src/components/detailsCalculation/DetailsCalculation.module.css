@@ -1,0 +1,28 @@
+.detailCalculation {
+  width: 100%;
+  background: rgba(146, 242, 255, .15);
+  padding: 30px 0;
+}
+
+.table {
+  width: 100%;
+  border: 2px solid #0E6795;
+  border-collapse: collapse;
+  text-align: center;
+  background: #fff;
+}
+
+.table,
+th,
+td {
+  border: 2px solid #0E6795;
+}
+
+.table th {
+  height: 70px;
+}
+
+.table__header {
+  background: #2ca4e0;
+  color: #fff;
+}

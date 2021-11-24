@@ -1,0 +1,37 @@
+.superInput {
+    align-items: center;
+    justify-content: center;
+    width: 170px;
+    height: 50px;
+    padding: 0 10px;
+    background: #fff;
+    box-shadow: 0 4px 15px rgb(0 0 0 / 20%);
+    border: none;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    outline: 0;
+    transition: .3s all;
+}
+
+.superInput:hover {
+    border: 3px solid #3390c1;
+}
+
+.errorInput {
+    height: 30px;
+    border-radius: 5px;
+    border: 2px solid #e22822;
+    background: #fff;
+    color: #0E6795;
+}
+
+.errorInput:hover {
+    border: 3px solid #e22822;
+}
+
+.error {
+    font-size: 0.8em;
+    text-align: start;
+    color: #e22822;
+}
