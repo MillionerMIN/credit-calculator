@@ -2,7 +2,12 @@ import SuperButton from '../common/button/SuperButton';
 import SuperInputText from '../common/input/SuperInputText';
 import style from './FormResults.module.css';
 
-export const FormResults = () => {
+type FormResultsPropsType = {
+  onOpenDetails: () => void;
+};
+
+export const FormResults = (props: FormResultsPropsType) => {
+  const { onOpenDetails } = props;
   const arrDetails = [
     { subtitle: 'сумма кредита' },
     { subtitle: 'ежемесячный платёж (если платёж фиксированный)' },
@@ -31,7 +36,7 @@ export const FormResults = () => {
         <div className={style.subtitle}>Результаты расчёта</div>
         <div className={style.details}>{detail}</div>
         <div className={style.button}>
-          <SuperButton>Детали расчёта</SuperButton>
+          <SuperButton onClick={onOpenDetails}>Детали расчёта</SuperButton>
         </div>
       </div>
     </>
