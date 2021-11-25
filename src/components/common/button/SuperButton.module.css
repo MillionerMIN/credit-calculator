@@ -27,15 +27,20 @@
     color: #fff;
 }
 
+/* .default:active {
+    background: #0E6795;
+    color: #fff;
+} */
+
 .default:hover:before {
     left: 150px;
     transition: .5s ease-in-out;
 }
 
 .default:disabled {
-    color: #B7B7B7;
-    background: none;
-    border: 2px solid #B7B7B7;
+    background: #0E6795;
+    color: #fff;
+    border: 2px solid #0E6795;
 }
 
 .delete {

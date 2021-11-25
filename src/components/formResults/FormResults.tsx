@@ -1,32 +1,42 @@
+import { CalculationResultsType } from '../calculat/Calculate';
 import SuperButton from '../common/button/SuperButton';
 import SuperInputText from '../common/input/SuperInputText';
 import style from './FormResults.module.css';
 
 type FormResultsPropsType = {
   onOpenDetails: () => void;
+  data: CalculationResultsType;
 };
 
 export const FormResults = (props: FormResultsPropsType) => {
-  const { onOpenDetails } = props;
+  const { data, onOpenDetails } = props;
   const arrDetails = [
-    { subtitle: 'сумма кредита' },
-    { subtitle: 'ежемесячный платёж (если платёж фиксированный)' },
+    { subtitle: 'сумма кредита', value: data.summa },
+    {
+      subtitle: 'ежемесячный платёж (если платёж фиксированный)',
+      value: data.dif,
+    },
     {
       subtitle:
         'максимальный ежемесячный платёж (если платёж не фиксированный)',
+      value: data.maxDif,
     },
     {
       subtitle: 'минимальный ежемесячный платёж (если платёж не фиксированный)',
+      value: data.minDif,
     },
-    { subtitle: 'общая сумма выплат по кредиту' },
-    { subtitle: 'общая сумма переплаты по кредиту' },
+    { subtitle: 'общая сумма выплат по кредиту', value: data.totalAmount },
+    {
+      subtitle: 'общая сумма переплаты по кредиту',
+      value: data.totalOverpayment,
+    },
   ];
 
   //элемент detail денамически отрисовывает все элементы находящиеся в массиве arrDetails
   const detail = arrDetails.map((detail, i) => (
     <div className={style.detail} key={i}>
       <div className={style.title}>{detail.subtitle}</div>
-      <SuperInputText />
+      <SuperInputText value={!detail.value ? '-' : detail.value} />
     </div>
   ));
 

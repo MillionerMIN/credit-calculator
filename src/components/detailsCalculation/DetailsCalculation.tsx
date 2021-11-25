@@ -1,11 +1,24 @@
+import { CalculationDetailsType } from '../calculat/Calculate';
 import style from './DetailsCalculation.module.css';
 
 type DetailsCalculationPropsType = {
+  data: CalculationDetailsType[];
   active: boolean;
 };
 
 export const DetailsCalculation = (props: DetailsCalculationPropsType) => {
-  const { active } = props;
+  const { data, active } = props;
+
+  const elementsTable = data.map((el, i) => (
+    <tr key={i}>
+      <td>{i + 1}</td>
+      <td>13-12-2020</td>
+      <td>{el.presents}</td>
+      <td>{el.mainDebt}</td>
+      <td>{el.dif}</td>
+      <td>{el.remainSumma}</td>
+    </tr>
+  ));
 
   return (
     <>
@@ -24,14 +37,7 @@ export const DetailsCalculation = (props: DetailsCalculationPropsType) => {
               </th>
               <th>остаток по телу кредита после данного платежа</th>
             </tr>
-            <tr>
-              <td>1</td>
-              <td>13-12-2020</td>
-              <td>110 000</td>
-              <td>11111111</td>
-              <td>1000021</td>
-              <td>1232321</td>
-            </tr>
+            {elementsTable}
           </table>
         </div>
       )}
