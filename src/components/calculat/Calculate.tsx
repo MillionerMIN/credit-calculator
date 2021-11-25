@@ -34,21 +34,43 @@ export type CalculationDetailsType = {
 };
 
 export const Calculate = () => {
+  const [summa, setSumma] = useState<string>('10000');
+  const [rate, setRate] = useState<string>('22.9');
+  const [period, setPeriod] = useState<number>(6);
   const [detail, setDetail] = useState<boolean>(false);
   const [method, setMethod] = useState<boolean>(false);
+
+  //функция изменения суммы кредита
+  const changeSumma = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.currentTarget.value;
+    if (!isFinite(+value)) return;
+    setSumma(value);
+  };
+
+  //функция изменения процентной ставки
+  const changeRate = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.currentTarget.value;
+    if (!isFinite(+value)) return;
+    setRate(value);
+  };
+
+  //функция изменения периода кредитования
+  const changePeriod = (e: React.MouseEvent<HTMLSpanElement>) => {
+    e.currentTarget.dataset.period &&
+      setPeriod(+e.currentTarget.dataset.period);
+  };
+
   //функция отоброжения блока с деталями расчёта
   const onOpenDetails = () => {
     setDetail(!detail);
   };
   //функция переключения метода расчета
-  const onChangeMethodCalculation = () => {
-    setMethod(!method);
+  const onChangeMethodCalculation = (e: React.MouseEvent<HTMLSpanElement>) => {
+    e.currentTarget.dataset.method && setMethod(!method);
   };
+  //
   //Стартовые данные
   let dataDetails;
-  let summa = 10000;
-  let period = 12;
-  let rate = 0.229;
   let dif, maxDif, minDif;
 
   // Изменение даты в зависимости от срока кредитования
@@ -76,11 +98,11 @@ export const Calculate = () => {
 
   // Проверка Условие выбора метода расчета
   if (method) {
-    dataDetails = annuityCalculationMethod(summa, period, rate);
-    dif = dataDetails[0].dif;
+    dataDetails = annuityCalculationMethod(+summa, period, +rate / 100);
+    dif = +dataDetails[0].dif.toFixed(2);
     console.log(dataDetails);
   } else {
-    dataDetails = differentiatedCalculationMethod(summa, period, rate);
+    dataDetails = differentiatedCalculationMethod(+summa, period, +rate / 100);
     console.log(dataDetails);
     //Максимальный ежемесечный платеж
     //@ts-ignore
@@ -96,10 +118,10 @@ export const Calculate = () => {
     }, 0)
     .toFixed(2);
   // общая сумма переплаты по кредиту
-  const totalOverpayment = +(totalAmount - summa).toFixed(2);
+  const totalOverpayment = +(totalAmount - +summa).toFixed(2);
 
   const calcResults: CalculationResultsType = {
-    summa,
+    summa: +summa,
     dif,
     maxDif,
     minDif,
@@ -109,8 +131,21 @@ export const Calculate = () => {
 
   return (
     <>
-      <FormParameters onChangeMethodCalculation={onChangeMethodCalculation} />
-      <FormResults onOpenDetails={onOpenDetails} data={calcResults} />
+      <FormParameters
+        summa={summa}
+        rate={rate}
+        period={period}
+        method={method}
+        onChangeSumma={changeSumma}
+        onChangeRate={changeRate}
+        onChangePeriod={changePeriod}
+        onChangeMethodCalculation={onChangeMethodCalculation}
+      />
+      <FormResults
+        data={calcResults}
+        active={detail}
+        onOpenDetails={onOpenDetails}
+      />
 
       <DetailsCalculation
         active={detail}

@@ -27,13 +27,8 @@
     color: #fff;
 }
 
-/* .default:active {
-    background: #0E6795;
-    color: #fff;
-} */
-
 .default:hover:before {
-    left: 150px;
+    left: 250px;
     transition: .5s ease-in-out;
 }
 
@@ -77,4 +72,9 @@
 .delete:hover:before {
     left: 150px;
     transition: .5s ease-in-out;
+}
+
+.active {
+    background: #0E6795;
+    color: #fff;
 }

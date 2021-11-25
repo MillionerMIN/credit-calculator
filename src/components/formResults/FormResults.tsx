@@ -4,12 +4,13 @@ import SuperInputText from '../common/input/SuperInputText';
 import style from './FormResults.module.css';
 
 type FormResultsPropsType = {
-  onOpenDetails: () => void;
   data: CalculationResultsType;
+  active: boolean;
+  onOpenDetails: () => void;
 };
 
 export const FormResults = (props: FormResultsPropsType) => {
-  const { data, onOpenDetails } = props;
+  const { data, active, onOpenDetails } = props;
   const arrDetails = [
     { subtitle: 'сумма кредита', value: data.summa },
     {
@@ -46,7 +47,12 @@ export const FormResults = (props: FormResultsPropsType) => {
         <div className={style.subtitle}>Результаты расчёта</div>
         <div className={style.details}>{detail}</div>
         <div className={style.button}>
-          <SuperButton onClick={onOpenDetails}>Детали расчёта</SuperButton>
+          <SuperButton
+            className={`${active && style.active}`}
+            onClick={onOpenDetails}
+          >
+            Детали расчёта
+          </SuperButton>
         </div>
       </div>
     </>

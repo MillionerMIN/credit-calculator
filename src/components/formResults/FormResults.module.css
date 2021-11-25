@@ -48,3 +48,8 @@
 .button {
   text-align: center;
 }
+
+.active {
+  background: #0E6795;
+  color: #fff;
+}
