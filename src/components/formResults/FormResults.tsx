@@ -1,27 +1,44 @@
+import { CalculationResultsType } from '../calculat/Calculate';
 import SuperButton from '../common/button/SuperButton';
-import SuperInputText from '../common/input/SuperInputText';
+import { TextLow } from '../common/textLow/TextLow';
 import style from './FormResults.module.css';
 
-export const FormResults = () => {
+type FormResultsPropsType = {
+  data: CalculationResultsType;
+  active: boolean;
+  onOpenDetails: () => void;
+};
+
+export const FormResults = (props: FormResultsPropsType) => {
+  const { data, active, onOpenDetails } = props;
   const arrDetails = [
-    { subtitle: 'сумма кредита' },
-    { subtitle: 'ежемесячный платёж (если платёж фиксированный)' },
+    { subtitle: 'сумма кредита', value: data.summa },
     {
-      subtitle:
-        'максимальный ежемесячный платёж (если платёж не фиксированный)',
+      subtitle: 'ежемесячный платёж',
+      value: data.dif,
     },
     {
-      subtitle: 'минимальный ежемесячный платёж (если платёж не фиксированный)',
+      subtitle: 'максимальный ежемесячный платёж',
+      value: data.maxDif,
     },
-    { subtitle: 'общая сумма выплат по кредиту' },
-    { subtitle: 'общая сумма переплаты по кредиту' },
+    {
+      subtitle: 'минимальный ежемесячный платёж',
+      value: data.minDif,
+    },
+    { subtitle: 'общая сумма выплат по кредиту', value: data.totalAmount },
+    {
+      subtitle: 'общая сумма переплаты по кредиту',
+      value: data.totalOverpayment,
+    },
   ];
 
   //элемент detail денамически отрисовывает все элементы находящиеся в массиве arrDetails
   const detail = arrDetails.map((detail, i) => (
     <div className={style.detail} key={i}>
       <div className={style.title}>{detail.subtitle}</div>
-      <SuperInputText />
+      <div className={style.input}>
+        <TextLow num={!detail.value ? -1 : detail.value} />
+      </div>
     </div>
   ));
 
@@ -31,7 +48,12 @@ export const FormResults = () => {
         <div className={style.subtitle}>Результаты расчёта</div>
         <div className={style.details}>{detail}</div>
         <div className={style.button}>
-          <SuperButton>Детали расчёта</SuperButton>
+          <SuperButton
+            className={`${active && style.active}`}
+            onClick={onOpenDetails}
+          >
+            Детали расчёта
+          </SuperButton>
         </div>
       </div>
     </>

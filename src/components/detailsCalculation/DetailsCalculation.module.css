@@ -4,7 +4,14 @@
   padding: 30px 0;
 }
 
+.subtitle {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+}
+
 .table {
+  margin: 20px 0;
   width: 100%;
   border: 2px solid #0E6795;
   border-collapse: collapse;
