@@ -19,19 +19,28 @@
 }
 
 .errorInput {
-    height: 30px;
-    border-radius: 5px;
-    border: 2px solid #e22822;
+    align-items: center;
+    justify-content: center;
+    width: 170px;
+    height: 50px;
+    padding: 0 10px;
     background: #fff;
-    color: #0E6795;
+    box-shadow: 0 2px 15px rgba(245, 12, 4, 0.5);
+    border: none;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    outline: 0;
+    transition: .3s all;
 }
 
 .errorInput:hover {
-    border: 3px solid #e22822;
+    border: 2px solid rgba(245, 12, 4, 0.5);
+    transition: .3s all;
 }
 
 .error {
-    font-size: 0.8em;
-    text-align: start;
-    color: #e22822;
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(245, 12, 4, 0.7);
 }

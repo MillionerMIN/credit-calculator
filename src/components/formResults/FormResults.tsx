@@ -1,6 +1,6 @@
 import { CalculationResultsType } from '../calculat/Calculate';
 import SuperButton from '../common/button/SuperButton';
-import SuperInputText from '../common/input/SuperInputText';
+import { TextLow } from '../common/textLow/TextLow';
 import style from './FormResults.module.css';
 
 type FormResultsPropsType = {
@@ -14,16 +14,15 @@ export const FormResults = (props: FormResultsPropsType) => {
   const arrDetails = [
     { subtitle: 'сумма кредита', value: data.summa },
     {
-      subtitle: 'ежемесячный платёж (если платёж фиксированный)',
+      subtitle: 'ежемесячный платёж',
       value: data.dif,
     },
     {
-      subtitle:
-        'максимальный ежемесячный платёж (если платёж не фиксированный)',
+      subtitle: 'максимальный ежемесячный платёж',
       value: data.maxDif,
     },
     {
-      subtitle: 'минимальный ежемесячный платёж (если платёж не фиксированный)',
+      subtitle: 'минимальный ежемесячный платёж',
       value: data.minDif,
     },
     { subtitle: 'общая сумма выплат по кредиту', value: data.totalAmount },
@@ -37,7 +36,9 @@ export const FormResults = (props: FormResultsPropsType) => {
   const detail = arrDetails.map((detail, i) => (
     <div className={style.detail} key={i}>
       <div className={style.title}>{detail.subtitle}</div>
-      <SuperInputText value={!detail.value ? '-' : detail.value} />
+      <div className={style.input}>
+        <TextLow num={!detail.value ? -1 : detail.value} />
+      </div>
     </div>
   ));
 

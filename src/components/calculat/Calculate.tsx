@@ -36,22 +36,19 @@ export type CalculationDetailsType = {
 
 export const Calculate = () => {
   const [summa, setSumma] = useState<string>('10000');
-  const [rate, setRate] = useState<string>('0');
+  const [rate, setRate] = useState<string>('25');
   const [period, setPeriod] = useState<number>(12);
   const [detail, setDetail] = useState<boolean>(false);
   const [method, setMethod] = useState<boolean>(true);
-  const [reefRate, setRefRate] = useState<string>('');
 
   //запрос для получения ставки рефенансирования + 5п.п.
   useEffect(() => {
     getRefinancingRate()
       .then((data) => {
-        setRefRate(data[0].Value + 5);
+        setRate(data[0].Value + 5);
       })
       .catch((error) => console.log('Error:' + error));
   }, []);
-
-  console.log(reefRate);
 
   //функция изменения суммы кредита
   const changeSumma = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -120,7 +117,7 @@ export const Calculate = () => {
     <>
       <FormParameters
         summa={summa}
-        rate={reefRate}
+        rate={rate}
         period={period}
         method={method}
         onChangeSumma={changeSumma}

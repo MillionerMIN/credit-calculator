@@ -39,11 +39,4 @@ export const datePeriod = (nowDate: Date, period: number) => {
   return arrDate;
 };
 
-//функция получения количества дней в месяце
-export function daysInMonth(anyDateInMonth: any) {
-  return new Date(
-    anyDateInMonth.getFullYear(),
-    anyDateInMonth.getMonth() + 1,
-    0
-  ).getDate();
-}
+
