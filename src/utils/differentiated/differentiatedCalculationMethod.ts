@@ -1,5 +1,7 @@
 // ########## Дифференцированный метод ##########
 
+import { CalculationDetailsType } from '../../components/calculat/Calculate';
+
 export function differentiatedCalculationMethod(
   summa: number,
   period: number,
@@ -16,7 +18,7 @@ export function differentiatedCalculationMethod(
   let mainDebt = +(summa / period).toFixed(2);
   //Расчет каждого платежа
   for (let i = 0; i < period; i++) {
-    let calcDetail = {};
+    let calcDetail = {} as CalculationDetailsType;
     calcDetail = {
       ...calcDetail,
       date: '11-11-2021',

@@ -23,7 +23,7 @@ export type CalculationResultsType = {
 
 export type CalculationDetailsType = {
   //дата платежа:
-  date: string;
+  date: string | number;
   //Сумма процентов в текущем месяце
   presents: number;
   //платёж по основному долгу:
@@ -71,7 +71,7 @@ export const Calculate = () => {
   };
   //
   //Стартовые данные
-  let dataDetails;
+  let dataDetails: CalculationDetailsType[];
   let dif, maxDif, minDif;
 
   // Проверка Условие выбора метода расчета
@@ -84,11 +84,9 @@ export const Calculate = () => {
     console.log(dataDetails);
 
     //Максимальный ежемесечный платеж
-    //@ts-ignore
     maxDif = dataDetails[0].dif;
 
     //Минимальный ежемесечный платеж
-    //@ts-ignore
     minDif = dataDetails[dataDetails.length - 1].dif;
   }
 
