@@ -12,7 +12,7 @@ export const DetailsCalculation = (props: DetailsCalculationPropsType) => {
   const elementsTable = data.map((el, i) => (
     <tr key={i}>
       <td>{i + 1}</td>
-      <td>13-12-2020</td>
+      <td>{el.date}</td>
       <td>{el.presents}</td>
       <td>{el.mainDebt}</td>
       <td>{el.dif}</td>

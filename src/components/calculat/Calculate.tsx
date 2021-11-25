@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { annuityCalculationMethod } from '../../utils/annuity/annuityCalculationMethod';
+import { daysInMonth } from '../../utils/datePeriod/datePeriod';
 import { differentiatedCalculationMethod } from '../../utils/differentiated/differentiatedCalculationMethod';
 import { DetailsCalculation } from '../detailsCalculation/DetailsCalculation';
 import { FormParameters } from '../formParameters/FormParameters';
@@ -35,10 +36,10 @@ export type CalculationDetailsType = {
 
 export const Calculate = () => {
   const [summa, setSumma] = useState<string>('10000');
-  const [rate, setRate] = useState<string>('22.9');
-  const [period, setPeriod] = useState<number>(6);
+  const [rate, setRate] = useState<string>('23');
+  const [period, setPeriod] = useState<number>(48);
   const [detail, setDetail] = useState<boolean>(false);
-  const [method, setMethod] = useState<boolean>(false);
+  const [method, setMethod] = useState<boolean>(true);
 
   //функция изменения суммы кредита
   const changeSumma = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -73,44 +74,24 @@ export const Calculate = () => {
   let dataDetails;
   let dif, maxDif, minDif;
 
-  // Изменение даты в зависимости от срока кредитования
-  // var now = new Date();
-  // const correctDate =
-  //   now.getDate() + '-' + now.getMonth() + '-' + now.getFullYear();
-
-  // let month = now.getMonth() + 1;
-
-  // let year = now.getFullYear();
-
-  // if (month === 12) {
-  //   month = 0 + 1;
-  //   year++;
-  // }
-
-  // for (let i = 0; i <= 12; i++) {
-  //   console.log(month++ + ' ' + year);
-
-  //   if (month === 12) {
-  //     month = 0;
-  //     year++;
-  //   }
-  // }
-
   // Проверка Условие выбора метода расчета
   if (method) {
-    dataDetails = annuityCalculationMethod(+summa, period, +rate / 100);
+    dataDetails = annuityCalculationMethod(+summa, period, +rate);
     dif = +dataDetails[0].dif.toFixed(2);
     console.log(dataDetails);
   } else {
-    dataDetails = differentiatedCalculationMethod(+summa, period, +rate / 100);
+    dataDetails = differentiatedCalculationMethod(+summa, period, +rate);
     console.log(dataDetails);
+
     //Максимальный ежемесечный платеж
     //@ts-ignore
     maxDif = dataDetails[0].dif;
+
     //Минимальный ежемесечный платеж
     //@ts-ignore
     minDif = dataDetails[dataDetails.length - 1].dif;
   }
+
   // общая сумма выплат по кредиту
   const totalAmount = +dataDetails
     .reduce((sum: number, item: any) => {
@@ -128,6 +109,12 @@ export const Calculate = () => {
     totalAmount,
     totalOverpayment,
   };
+
+  let now = new Date();
+
+  const arr = daysInMonth(now);
+
+  console.log('date' + arr);
 
   return (
     <>

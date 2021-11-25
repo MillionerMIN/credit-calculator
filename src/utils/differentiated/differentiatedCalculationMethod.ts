@@ -7,12 +7,12 @@ export function differentiatedCalculationMethod(
 ) {
   let calcDetails = [];
 
-  let monthRate = rate / 12;
+  let monthRate = rate / 12 / 100;
   let dif = 0;
   let presents = 0;
   //Оставшееся сумма платежа
   let remainSumma = summa;
-  //Основной долг
+  //Основной долг «тело кредита», то есть ежемесячный платеж в счет погашения основного долга
   let mainDebt = +(summa / period).toFixed(2);
   //Расчет каждого платежа
   for (let i = 0; i < period; i++) {
@@ -22,11 +22,12 @@ export function differentiatedCalculationMethod(
       date: '11-11-2021',
     };
     calcDetail = { ...calcDetail, remainSumma };
-    presents = +(remainSumma * monthRate).toFixed(2);
+
+    presents = +(remainSumma * monthRate).toFixed(2); //ежемесячная сумма подлежащих к уплате процентов
     calcDetail = { ...calcDetail, presents };
     remainSumma -= mainDebt;
     remainSumma = +remainSumma.toFixed(2);
-    dif = +(presents + mainDebt).toFixed(2);
+    dif = +(presents + mainDebt).toFixed(2); //сумма ежемесячного дифференцированного платежа
     calcDetail = { ...calcDetail, mainDebt };
     calcDetail = { ...calcDetail, dif };
     calcDetails.push(calcDetail);
