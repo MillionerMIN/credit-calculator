@@ -19,6 +19,7 @@ export function annuityCalculationMethod(
   let rateAnn = topPart / bottomPart;
   let remainSumma = summa;
   ann = +(rateAnn * summa).toFixed(2);
+  //массив дат для отоброжения дат периода
   const arrDate = datePeriod(new Date(), period);
 
   for (let i = 0; i < period; i++) {

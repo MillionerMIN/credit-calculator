@@ -1,6 +1,7 @@
 // ########## Дифференцированный метод ##########
 
 import { CalculationDetailsType } from '../../components/calculat/Calculate';
+import { datePeriod } from '../datePeriod/datePeriod';
 
 export function differentiatedCalculationMethod(
   summa: number,
@@ -17,11 +18,14 @@ export function differentiatedCalculationMethod(
   //Основной долг «тело кредита», то есть ежемесячный платеж в счет погашения основного долга
   let mainDebt = +(summa / period).toFixed(2);
   //Расчет каждого платежа
+
+  //массив дат для отоброжения дат периода
+  const arrDate = datePeriod(new Date(), period);
   for (let i = 0; i < period; i++) {
     let calcDetail = {} as CalculationDetailsType;
     calcDetail = {
       ...calcDetail,
-      date: '11-11-2021',
+      date: arrDate[i],
     };
     calcDetail = { ...calcDetail, remainSumma };
 
@@ -30,10 +34,8 @@ export function differentiatedCalculationMethod(
     remainSumma -= mainDebt;
     remainSumma = +remainSumma.toFixed(2);
     dif = +(presents + mainDebt).toFixed(2); //сумма ежемесячного дифференцированного платежа
-    calcDetail = { ...calcDetail, mainDebt };
-    calcDetail = { ...calcDetail, dif };
+    calcDetail = { ...calcDetail, mainDebt, dif };
     calcDetails.push(calcDetail);
   }
-  console.log(calcDetails);
   return [...calcDetails];
 }

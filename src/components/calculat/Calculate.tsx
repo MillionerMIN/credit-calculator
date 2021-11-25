@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getRefinancingRate } from '../../api/api';
 import { annuityCalculationMethod } from '../../utils/annuity/annuityCalculationMethod';
-import { daysInMonth } from '../../utils/datePeriod/datePeriod';
 import { differentiatedCalculationMethod } from '../../utils/differentiated/differentiatedCalculationMethod';
 import { DetailsCalculation } from '../detailsCalculation/DetailsCalculation';
 import { FormParameters } from '../formParameters/FormParameters';
@@ -36,10 +36,22 @@ export type CalculationDetailsType = {
 
 export const Calculate = () => {
   const [summa, setSumma] = useState<string>('10000');
-  const [rate, setRate] = useState<string>('23');
-  const [period, setPeriod] = useState<number>(48);
+  const [rate, setRate] = useState<string>('0');
+  const [period, setPeriod] = useState<number>(12);
   const [detail, setDetail] = useState<boolean>(false);
   const [method, setMethod] = useState<boolean>(true);
+  const [reefRate, setRefRate] = useState<string>('');
+
+  //запрос для получения ставки рефенансирования + 5п.п.
+  useEffect(() => {
+    getRefinancingRate()
+      .then((data) => {
+        setRefRate(data[0].Value + 5);
+      })
+      .catch((error) => console.log('Error:' + error));
+  }, []);
+
+  console.log(reefRate);
 
   //функция изменения суммы кредита
   const changeSumma = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -78,14 +90,10 @@ export const Calculate = () => {
   if (method) {
     dataDetails = annuityCalculationMethod(+summa, period, +rate);
     dif = +dataDetails[0].dif.toFixed(2);
-    console.log(dataDetails);
   } else {
     dataDetails = differentiatedCalculationMethod(+summa, period, +rate);
-    console.log(dataDetails);
-
     //Максимальный ежемесечный платеж
     maxDif = dataDetails[0].dif;
-
     //Минимальный ежемесечный платеж
     minDif = dataDetails[dataDetails.length - 1].dif;
   }
@@ -108,17 +116,11 @@ export const Calculate = () => {
     totalOverpayment,
   };
 
-  let now = new Date();
-
-  const arr = daysInMonth(now);
-
-  console.log('date' + arr);
-
   return (
     <>
       <FormParameters
         summa={summa}
-        rate={rate}
+        rate={reefRate}
         period={period}
         method={method}
         onChangeSumma={changeSumma}
