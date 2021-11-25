@@ -11,11 +11,22 @@ export const TextLow = (props: TextLowPropsType) => {
   let before = str.indexOf('.');
   if (before === -1 && str > 0) {
     firstStr = str;
+    lastStr = '.00';
+    if (firstStr === 0) {
+      firstStr = 0;
+      lastStr = '';
+    }
   } else if (before === -1 && str < 0) {
     firstStr = '---';
   } else {
     firstStr = str.slice(0, before);
     lastStr = str.slice(before, str.length);
+    if (firstStr === 0) {
+      firstStr = 0;
+    }
+    if (lastStr.length < 3) {
+      lastStr += '0';
+    }
   }
 
   return (

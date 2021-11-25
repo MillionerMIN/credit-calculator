@@ -1,4 +1,5 @@
 import { CalculationDetailsType } from '../calculat/Calculate';
+import { TextLow } from '../common/textLow/TextLow';
 import style from './DetailsCalculation.module.css';
 
 type DetailsCalculationPropsType = {
@@ -13,10 +14,18 @@ export const DetailsCalculation = (props: DetailsCalculationPropsType) => {
     <tr key={i}>
       <td>{i + 1}</td>
       <td>{el.date}</td>
-      <td>{el.presents}</td>
-      <td>{el.mainDebt}</td>
-      <td>{el.dif}</td>
-      <td>{el.remainSumma}</td>
+      <td>
+        <TextLow num={el.presents} />
+      </td>
+      <td>
+        <TextLow num={el.mainDebt} />
+      </td>
+      <td>
+        <TextLow num={el.dif} />
+      </td>
+      <td>
+        <TextLow num={el.remainSumma} />
+      </td>
     </tr>
   ));
 
