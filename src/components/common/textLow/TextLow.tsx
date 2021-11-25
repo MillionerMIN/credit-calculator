@@ -14,7 +14,7 @@ export const TextLow = (props: TextLowPropsType) => {
   } else if (before === -1 && str < 0) {
     firstStr = '---';
   } else {
-    firstStr = str.slice('.', before - 1);
+    firstStr = str.slice(0, before);
     lastStr = str.slice(before, str.length);
   }
 
