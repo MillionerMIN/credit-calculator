@@ -1,12 +1,16 @@
 <h1 style='color: #3390c1;'>SPA "Кредитный калькулятор" </h1>
 
+Language of development:<h3 style='color:#3178c6;'> <strong>TypeScript</strong></h3>
+<img src="https://gw.alipayobjects.com/zos/antfincdn/Eb8IHpb9jE/Typescript_logo_2020.svg" width="100" />
+
+Technology: <h3 style='color:#61dafb;'> <strong>ReactJS</strong></h3>
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMS41IC0xMC4yMzE3NCAyMyAyMC40NjM0OCI+CiAgPHRpdGxlPlJlYWN0IExvZ288L3RpdGxlPgogIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIyLjA1IiBmaWxsPSIjNjFkYWZiIi8+CiAgPGcgc3Ryb2tlPSIjNjFkYWZiIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIi8+CiAgICA8ZWxsaXBzZSByeD0iMTEiIHJ5PSI0LjIiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjApIi8+CiAgPC9nPgo8L3N2Zz4K" width="100" />
+
   <ul>
       <li>Приложение позволяет выполнить расчёт платежей по кредиту по заданным параметрам.</li>
   </ul>
 
-![til](./srs/img/Credit-calculator.gif)
-
-![alt text](./srs/img/Credit-calculator.gif)
+![alt text](https://github.com/MillionerMIN/credit-calculator/blob/main/src/img/Credit-calculator.gif)
 
 <h3 style='color: #3390c1'>Приложение содержать следующие визуальные блоки:</h3>
     <ul>
@@ -15,7 +19,7 @@
       <li>блок с деталями расчёта</li>
     </ul>
 
-### Для расчёта платежей по кредиту используется два метода
+<h3 style='color: #3390c1'> Для расчёта платежей по кредиту используется два метода</h3>
 
 <ol>
   <li> <b style='color: rgb(197, 165, 197) '>Аннуитетный платёж</b> – это платёж, который устанавливается в равной сумме через равные промежутки времени. Так, при аннуитетном графике погашения кредита вы ежемесячно платите одну и ту же сумму, независимо от остатка задолженности.
@@ -57,6 +61,17 @@
 
   </li>
 </ol>
+
+<h3 style='color: #3390c1'>Значения по умолчанию для формы ввода:</h3>
+
+<ul>
+<li>сумма = 10000</li>
+<li>срок = 1 год</li>
+<li>процентная ставка = (ставка рефинансирования НБРБ на текущую дату) + 5 п.п.</li>
+</ul>
+Для получения ставки рефинансирования использовать API. См.
+
+[https://www.nbrb.by/apihelp/refinancingrate](https://www.nbrb.by/apihelp/refinancingrate)
 
 ## Getting Started with Create React App
 
