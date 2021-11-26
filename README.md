@@ -4,7 +4,7 @@ Language of development:<h3 style='color:#3178c6;'> <strong>TypeScript</strong><
 <img src="https://gw.alipayobjects.com/zos/antfincdn/Eb8IHpb9jE/Typescript_logo_2020.svg" width="100" />
 
 Technology: <h3 style='color:#61dafb;'> <strong>ReactJS</strong></h3>
-<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMS41IC0xMC4yMzE3NCAyMyAyMC40NjM0OCI+CiAgPHRpdGxlPlJlYWN0IExvZ288L3RpdGxlPgogIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIyLjA1IiBmaWxsPSIjNjFkYWZiIi8+CiAgPGcgc3Ryb2tlPSIjNjFkYWZiIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIi8+CiAgICA8ZWxsaXBzZSByeD0iMTEiIHJ5PSI0LjIiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjApIi8+CiAgPC9nPgo8L3N2Zz4K" width="100" />
+<img src="https://kripton.dexignzone.com/welcome/images/icons/43.png" width="100" />
 
   <ul>
       <li>Приложение позволяет выполнить расчёт платежей по кредиту по заданным параметрам.</li>
@@ -64,11 +64,11 @@ Technology: <h3 style='color:#61dafb;'> <strong>ReactJS</strong></h3>
 
 <h3 style='color: #3390c1'>Значения по умолчанию для формы ввода:</h3>
 
-<ul>
-<li>сумма = 10000</li>
-<li>срок = 1 год</li>
-<li>процентная ставка = (ставка рефинансирования НБРБ на текущую дату) + 5 п.п.</li>
-</ul>
+  <ul>
+      <li>сумма = 10000</li>
+      <li>срок = 1 год</li>
+      <li>процентная ставка = (ставка рефинансирования НБРБ на текущую дату) + 5 п.п.</li>
+  </ul>
 Для получения ставки рефинансирования использовать API. См.
 
 [https://www.nbrb.by/apihelp/refinancingrate](https://www.nbrb.by/apihelp/refinancingrate)
